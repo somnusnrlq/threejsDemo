@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>画线</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">Description</div>
+
+    <script src="js/three.js"></script>
+    <script type="module">
+      // 1. 定义场景
+      const scene = new THREE.Scene()
+      // 2. 定义相机--透视相机
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
+      // 3. 定义渲染器
+      const renderer = new THREE.WebGLRenderer()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      document.body.appendChild(renderer.domElement)
+
+      // 几何体
+      var geometry = new THREE.BoxGeometry(20, 20, 20)
+      // 材质
+      const material = new THREE.MeshNormalMaterial()
+      // 网格
+      const mesh = new THREE.Mesh(geometry, material)
+      scene.add(mesh)
+
+      // update cube vertices
+      for (var i = 0, l = geometry.vertices.length; i < l; i++) {
+        geometry.vertices[i].x += -10 + Math.random() * 20
+        geometry.vertices[i].y += -10 + Math.random() * 20
+      }
+
+      mesh.rotation.x = 0.1
+      mesh.rotation.y = -0.25
+      // 默认在000
+      camera.position.z = 100
+
+      var render = function () {
+        requestAnimationFrame(render)
+        renderer.render(scene, camera)
+        mesh.rotation.x += 0.05
+      }
+      render()
+    </script>
+  </body>
+</html>
