@@ -1,3 +1,11 @@
+# 搭建静态服务器
+
+```
+npm install -g live-server
+live-server
+
+```
+
 # 场景、相机和渲染器
 
 ## 相机 camera
@@ -16,14 +24,26 @@
 | opacity     | 透明度设置，0 表示完全透明，1 表示完全不透明 |
 | transparent | 是否开启透明，默认 false                     |
 
+反射
+MeshLambertMaterial // 漫反射 --常用
+MeshPhongMaterial // 镜面反射
+
+| 材质类型             | 功能                                                              |
+| -------------------- | ----------------------------------------------------------------- |
+| MeshBasicMaterial    | 基础网格材质，不受光照影响的材质                                  |
+| MeshLambertMaterial  | Lambert 网格材质，与光照有反应，漫反射                            |
+| MeshPhongMaterial    | 高光 Phong 材质,与光照有反应                                      |
+| MeshStandardMaterial | PBR 物理材质，相比较高光 Phong 材质可以更好的模拟金属、玻璃等效果 |
+
 BoxGeometry（立方体）---顶点（vertices）和面（faces）
 
 Mesh--BoxGeometry、Material
 
-# 搭建静态服务器
+## 光源
 
-```
-npm install -g live-server
-live-server
-
-```
+| 光源             | 简介               |
+| ---------------- | ------------------ |
+| AmbientLight     | 环境光             |
+| PointLight       | 点光源             |
+| DirectionalLight | 平行光，比如太阳光 |
+| SpotLight        | 聚光源             |
